@@ -5,6 +5,11 @@ Um bot do Telegram simples para registrar e acompanhar seus gastos diários. Fac
 ## ✨ Funcionalidades
 
 - **Registro de Gastos:** Salve rapidamente seus gastos com valor, categoria, forma de pagamento e necessidade.
+- **Mensagem de Boas-Vindas:** Guia o usuário sobre como interagir com o bot.
+- **Consulta por Categoria:** Visualize todos os gastos de uma categoria específica.
+- **Consulta por Necessidade:** Filtre gastos entre essenciais ('s') e não essenciais ('n').
+- **Consulta Detalhada (por Período, Categoria, Meio de Pagamento, Necessidade):** Um fluxo interativo com botões para filtrar seus gastos.
+- **Total de Gastos:** Soma todos os gastos registrados pelo usuário.
 - **Integração com PostgreSQL:** Armazena todos os dados em um banco de dados PostgreSQL.
 - **Interface Intuitiva:** Interaja com o bot usando um formato de mensagem simples e direto.
 
@@ -70,6 +75,7 @@ Vamos usar o Docker para iniciar uma instância do PostgreSQL.
     ```sql
     CREATE TABLE gastos (
         id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL, -- Adicionado para identificar o usuário
         valor DECIMAL(10, 2) NOT NULL,
         categoria VARCHAR(50),
         forma_pagamento VARCHAR(50),
@@ -104,4 +110,3 @@ gasto: 50.00, categoria: mercado, forma de pagamento: débito, necessidade: s
 - `gasto: 35.00, categoria: transporte, forma de pagamento: pix, necessidade: s`
 
 O bot responderá confirmando o registro do gasto ou informando sobre um formato inválido.
-```
